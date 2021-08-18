@@ -1,3 +1,20 @@
+function chekOutPrice() {
+    const subTotal = document.getElementById('sub-total');
+    const taxAmount = document.getElementById('tax-amount');
+    let taxAmountNumber = parseFloat(taxAmount.innerText);
+    let totalPrice = document.getElementById('total-price');
+    const prices = document.getElementsByClassName('product-price');
+
+    let subPrice = 0;
+    for (let price of prices) {
+        console.log(price.innerText)
+        subPrice += parseFloat(price.innerText);
+    }
+    subTotal.innerText = subPrice;
+    totalPrice.innerText = subPrice + parseFloat(subPrice / taxAmountNumber);
+}
+chekOutPrice();
+
 function updatePrice(isIncrease, product, price) {
     const productCount = document.getElementById(product + '-qnt');
     let productCountValue = parseInt(productCount.value);
@@ -13,10 +30,6 @@ function updatePrice(isIncrease, product, price) {
     productPriceValue = price * productCountValue
     productPrice.innerText = productPriceValue;
     chekOutPrice();
-}
-
-function chekOutPrice() {
-
 }
 
 document.getElementById('phone-plus').addEventListener('click', function () {
